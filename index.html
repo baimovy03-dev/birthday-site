@@ -214,17 +214,14 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:10px;
-    color:rgba(255,255,255,.55);
     overflow:hidden;
   }
   .polaroid .frame img{
-    width:100%;height:100%;
+    width:100%;
+    height:100%;
     object-fit:cover;
     display:block;
   }
-  .polaroid .frame svg{width:44px;height:44px;opacity:.7;}
-  .polaroid .frame .ph-text{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.6);}
   .polaroid .caption{
     position:absolute;
     bottom:12px; left:0; right:0;
@@ -346,39 +343,22 @@
     font-size:1.1rem;
   }
 
-  /* ---------- Author Card ---------- */
-  .author-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    max-width: 640px;
-    margin: 30px auto 0 auto;
+  /* ---------- Music Controls ---------- */
+  .music-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
   }
-  .author-avatar {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--pink);
-  }
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .author-content h3 {
-    margin-bottom: 8px;
-    color: var(--yellow);
-  }
-  .author-content p {
-    color: rgba(255, 248, 240, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.5;
+  .btn-music {
+    background: var(--yellow);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
   footer{
@@ -393,7 +373,6 @@
   @media (max-width:600px){
     .age-badge{width:140px;height:140px;}
     .age-badge span{width:112px;height:112px;font-size:3rem;}
-    .author-card { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
@@ -405,6 +384,14 @@
 <div class="blob blob3"></div>
 
 <div id="balloon-container"></div>
+
+<!-- Музыкальный плеер -->
+<div class="music-controls">
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+  <button class="btn-music" onclick="toggleMusic()">🔊 Включить музыку</button>
+</div>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
@@ -418,49 +405,67 @@
 <!-- ================= GALLERY ================= -->
 <section>
   <h2 class="section-title">Момент<span class="accent">ы</span></h2>
-  <p class="section-sub">Здесь скоро появятся настоящие фотографии — пока просто заглушки, ждём материал 📸</p>
+  <p class="section-sub">Самые яркие моменты вместе 📸</p>
   <div class="gallery" id="gallery">
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="3757ceab-54b9-4622-a2e9-9d9c98cd1ade.jpeg" alt="момент 1">
       </div>
       <div class="caption">✨ момент 1</div>
     </div>
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="3ed6edda-a2d2-4dcc-8b96-16afc566b203.jpeg" alt="момент 2">
       </div>
       <div class="caption">🎈 момент 2</div>
     </div>
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="46e7297e-30da-4a5c-b09b-95d042af9d97.jpeg" alt="момент 3">
       </div>
       <div class="caption">🍰 момент 3</div>
     </div>
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="81e0b322-8665-44c5-8ce1-f48e9d290116.jpeg" alt="момент 4">
       </div>
       <div class="caption">🌟 момент 4</div>
     </div>
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="9bf2c7c2-2b19-4daf-8f12-fef3c6dcaa71.jpeg" alt="момент 5">
       </div>
       <div class="caption">💫 момент 5</div>
     </div>
     <div class="polaroid">
       <div class="frame">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
-        <span class="ph-text">фото скоро</span>
+        <img src="ae244474-31cb-4b48-a762-89062b9b9479.jpeg" alt="момент 6">
       </div>
       <div class="caption">🎉 момент 6</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame">
+        <img src="bc1eb3cf-b90f-49bd-95b3-f20c808d5fb1.jpeg" alt="момент 7">
+      </div>
+      <div class="caption">🔥 момент 7</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame">
+        <img src="d36dfe81-13fa-48fb-a21d-86219e2a4368.jpeg" alt="момент 8">
+      </div>
+      <div class="caption">💖 момент 8</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame">
+        <img src="ec0f9504-4d13-4f68-b6a9-bbf9c10707eb.jpeg" alt="момент 9">
+      </div>
+      <div class="caption">☀️ момент 9</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame">
+        <img src="eeb12644-e031-4a95-a963-8405a125a0c3.jpeg" alt="момент 10">
+      </div>
+      <div class="caption">🚀 момент 10</div>
     </div>
   </div>
 </section>
@@ -500,22 +505,28 @@
     <p>С днём рождения! 16 — это классный возраст: уже достаточно взрослая, чтобы мечтать по-крупному, и всё ещё достаточно юная, чтобы наслаждаться каждой мелочью. Пусть этот год принесёт много смеха, крутых открытий и людей, которые ценят тебя такой, какая ты есть. Оставайся такой же яркой! 💛</p>
     <div class="sign">— с любовью, твои близкие</div>
   </div>
-
-  <!-- Блок автора -->
-  <div class="author-card">
-    <div class="author-avatar">
-      <img src="photo.jpg" alt="Автор">
-    </div>
-    <div class="author-content">
-      <h3>От кого это поздравление?</h3>
-      <p>Привет! Это я, тот самый человек, который захотел сделать этот день для тебя чуть более особенным. Надеюсь, тебе нравится этот сюрприз! 😉</p>
-    </div>
-  </div>
 </section>
 
-<footer>сделано 🎈 специально для Настеньки, от ее любящей и большой семьи</footer>
+<footer>сделано с 🎈 специально для дня рождения</footer>
 
 <script>
+/* ================= MUSIC ================= */
+async function toggleMusic() {
+  const audio = document.getElementById("bgMusic");
+  const btn = document.querySelector(".btn-music");
+  try {
+    if (audio.paused) {
+      await audio.play();
+      btn.textContent = "🔇 Выключить музыку";
+    } else {
+      audio.pause();
+      btn.textContent = "🔊 Включить музыку";
+    }
+  } catch (err) {
+    console.log("Ошибка воспроизведения:", err);
+  }
+}
+
 /* ================= CONFETTI ================= */
 const canvas = document.getElementById('confetti-canvas');
 const ctx = canvas.getContext('2d');
@@ -666,45 +677,4 @@ function endGame(){
 </script>
 
 </body>
-<!-- Музыкальный блок -->
-<div class="music-controls">
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Твой браузер не поддерживает аудио.
-  </audio>
-  <button class="btn-music" onclick="toggleMusic()">🔊 Включить музыку</button>
-</div>
-
-<style>
-.music-controls {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 100;
-}
-.btn-music {
-  background: var(--yellow);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  font-family: 'Fredoka', sans-serif;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-</style>
-
-<script>
-function toggleMusic() {
-  const audio = document.getElementById("bgMusic");
-  const btn = document.querySelector(".btn-music");
-  if (audio.paused) {
-    audio.play();
-    btn.textContent = "🔇 Выключить музыку";
-  } else {
-    audio.pause();
-    btn.textContent = "🔊 Включить музыку";
-  }
-}
-</script>
 </html>
